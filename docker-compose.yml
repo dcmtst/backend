@@ -1,0 +1,16 @@
+version: '3'
+services:
+   backend:
+      image: postgres@sha256:3fe548eca8cf58f11a186912853f4e94d49fa7848684245c3a5939cabad3fe01
+      volumes:
+         - ./sql:/docker-entrypoint-initdb.d
+      environment:
+         - POSTGRES_PASSWORD=dcmtst
+
+   pgadmin:
+      image: dpage/pgadmin4@sha256:5f5c2874a80421668a506cc28473916707bc3d3b0d62dc792f0ca36b28147ceb
+      environment:
+         - PGADMIN_DEFAULT_EMAIL=dcmtst@dcmtst.com
+         - PGADMIN_DEFAULT_PASSWORD=dcmtst 
+      ports:
+         - 80:80
