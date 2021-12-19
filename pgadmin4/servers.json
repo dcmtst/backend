@@ -1,0 +1,14 @@
+{
+    "Servers": {
+        "1": {
+            "Name": "dcmtst backend",
+            "Group": "Servers",
+            "Port": 5432,
+            "Username": "dcmtst",
+            "Host": "backend",
+            "SSLMode": "prefer",
+            "Comment": "This is a test backend for dcmtst folks!",
+            "MaintenanceDB": "dcmtst"
+        }
+    }
+}

@@ -2,15 +2,24 @@ version: '3'
 services:
    backend:
       image: postgres@sha256:3fe548eca8cf58f11a186912853f4e94d49fa7848684245c3a5939cabad3fe01
+      container_name: backend
       volumes:
          - ./sql:/docker-entrypoint-initdb.d
+         - ./dumps:/dumps
+         - ./utils/dump_dcmtst:/usr/local/bin/dump_dcmtst
       environment:
+         - POSTGRES_USER=dcmtst
+         - POSTGRES_DB=dcmtst
          - POSTGRES_PASSWORD=dcmtst
 
    pgadmin:
       image: dpage/pgadmin4@sha256:5f5c2874a80421668a506cc28473916707bc3d3b0d62dc792f0ca36b28147ceb
+      container_name: pgadmin
+      volumes:
+         - ./pgadmin4/servers.json:/pgadmin4/servers.json
       environment:
          - PGADMIN_DEFAULT_EMAIL=dcmtst@dcmtst.com
-         - PGADMIN_DEFAULT_PASSWORD=dcmtst 
+         - PGADMIN_DEFAULT_PASSWORD=dcmtst
+         - PGADMIN_CONFIG_LOGIN_BANNER="Welcome to the test backend for dcmtst!" 
       ports:
          - 80:80
